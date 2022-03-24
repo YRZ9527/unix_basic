@@ -15,10 +15,12 @@ int main() {
     }else if(pid == 0) {
         // 子进程
         // 调用自己写的可执行程序
-        execl("hello","hello",NULL);
+        // execl("hello","hello",NULL);
 
         // 调用系统进程
-        // execl("/bin/ps", "ps", "aux", NULL);
+        execlp("ps", "ps", "aux", NULL); 
+
+        //调用系统进程不需要
         perror("execl");
         printf("i am child process, pid : %d\n", getpid());
 
