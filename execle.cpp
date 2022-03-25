@@ -15,13 +15,8 @@ int main() {
     else if(pid == 0){
         char* envp[] = {"~/Code/unix",NULL};
         execle("../unix","hello",NULL,envp);
-
         perror("execle");
-
-
         cout<<"child process"<<":"<<getpid()<<endl;
-
-
     }
 
     for(int i=0; i< 3; i++)
