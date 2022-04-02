@@ -61,7 +61,7 @@ void lastOrder(LPTREE root)
     }
 }
 
-//非递归
+//先序非递归
 void preOrderStack(LPTREE root)
 {
 
@@ -88,7 +88,7 @@ void preOrderStack(LPTREE root)
     }
 }
 
-//
+//中序非递归
 void minOrderStack(LPTREE root)
 {
     if(root == NULL) return; 
@@ -102,7 +102,7 @@ void minOrderStack(LPTREE root)
         while(pMove)
         {
             stack[++stackTop] = pMove;
-            pMove = pMove->RChild;
+            pMove = pMove->LChild;
         }
 
         if(stackTop != -1)
@@ -135,6 +135,7 @@ int main()
     // cout << "next" << endl;
     // lastOrder(A);
 
-    preOrderStack(A);
+    //preOrderStack(A);
+    minOrderStack(A);
     return 0;
 }
