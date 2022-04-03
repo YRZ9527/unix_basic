@@ -114,6 +114,20 @@ void minOrderStack(LPTREE root)
     } 
     
 }
+
+void lastOrderStack(LPTREE root)
+{
+    if(root == NULL) return;
+    LPTREE stack[10];
+    LPTREE stack_1[10];
+    int stackTop = -1;
+    LPTREE pMove = root;
+    while(stackTop != -1 || pMove)
+    {
+        stack[++stackTop] = pMove;
+
+    }
+}
 int main()
 {
 
