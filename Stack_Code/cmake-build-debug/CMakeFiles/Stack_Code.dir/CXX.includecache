@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/zong/Code/unix/Stack_Code/Stack.cpp
+Stack.h
+/Users/zong/Code/unix/Stack_Code/Stack.h
+
+/Users/zong/Code/unix/Stack_Code/Stack.h
+
+/Users/zong/Code/unix/Stack_Code/main.cpp
+iostream
+-
+Stack.h
+/Users/zong/Code/unix/Stack_Code/Stack.h
+
