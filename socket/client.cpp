@@ -18,7 +18,7 @@ int main(){
         return 0;
     }
 
-    struct sockaddr_in server;
+    sockaddr_in server;
     bzero(&server,sizeof(server));
     server.sin_family = AF_INET;
     server.sin_port = htons(port);
