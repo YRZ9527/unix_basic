@@ -10,6 +10,7 @@
 #include <dirent.h>
 #include <sys/mman.h>
 #include <arpa/inet.h>
+#include <pthread.h>
 using namespace std;
 
 
