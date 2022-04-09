@@ -6,8 +6,11 @@ int main() {
         perror("access");
     }
     int ret2 = access("1.txt",R_OK);
-    if(ret2 == -1)
+    if(ret2 == -1)               
     {
+
+
+
         perror("run error");
     }
     
