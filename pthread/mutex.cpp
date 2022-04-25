@@ -1,58 +1,50 @@
-#include<iostream>
-#include<string>
-#include<unistd.h>
-#include<stdio.h>
-using namespace std;
+#include <stdio.h>
+#include <pthread.h>
+
+// 全局变量创建互斥量，保证所有线程都能访问
 pthread_mutex_t mutex;
 
-void* fun1(void* arg){
+int total_tickets = 100;
 
-	int i = 0;
-    pthread_mutex_lock(&mutex);
-    for(i = 'A'; i < 'Z'; i++){
-        putchar(i);
-        fflush(stdout);
+void* selltickets(void* arg) {
+    while (1) {
+        // 加锁
+        pthread_mutex_lock(&mutex);
+        if (total_tickets > 0) {
+            // 访问共享变量
+            printf("线程%ld 正在售卖第%d张票\n", pthread_self(), total_tickets);
+            total_tickets--;
+        } else {
+            // 解锁
+            pthread_mutex_unlock(&mutex);
+            break;
+        }
+        // 解锁
+        pthread_mutex_unlock(&mutex);
     }
-    pthread_mutex_unlock(&mutex);
-    return nullptr;
+
+    return NULL;
 }
 
-void* fun2(void* arg){
-    int i = 0;
-    pthread_mutex_lock(&mutex);
-    for(i = 'a'; i < 'z'; i++){
-        putchar(i);
-        fflush(stdout);
-    }
-    pthread_mutex_unlock(&mutex);
-    return nullptr;
-}
+int main()
+{
+    // 初始化互斥量
+    pthread_mutex_init(&mutex, NULL);
 
+    // 创建三个线程
+    pthread_t tid1;
+    pthread_t tid2;
+    pthread_t tid3;
+    pthread_create(&tid1, NULL, selltickets, NULL);
+    pthread_create(&tid2, NULL, selltickets, NULL);
+    pthread_create(&tid3, NULL, selltickets, NULL);
+    // 线程连接，回收子线程的资源，阻塞
+    pthread_join(tid1, NULL);
+    pthread_join(tid2, NULL);
+    pthread_join(tid3, NULL);
+    pthread_exit(NULL);     // 退出main进程
 
-
-int main() {
-    int ret = -1;
-    ret = pthread_mutex_init(&mutex, NULL);
-    if(0 != ret) {
-        cout<<"ERROR: pthread_mutex_init "<<endl;
-        return 1;
-    }
-	pthread_t tid1,tid2;
-	int num = 10;
-	int ret1 = pthread_create(&tid1,NULL,fun1,(void*)&num);
-    int ret2 = pthread_create(&tid2,NULL,fun2, (void*)&num);
-	// if(ret != 0) {
-
-	// 	char * errstr = strerror(ret);
-	// 	cout<<"error: s%\n"<<errstr;
-	// }
-    pthread_join(tid1,nullptr);
-    pthread_join(tid2,nullptr);
-
-    pthrread_mutex_destroy(&mutex);
-
-
-	sleep(1);
-    cout<<"main pthread exit"<<endl;
-	return 0;
+    // 释放互斥量资源
+    pthread_mutex_destroy(&mutex);
+    return 0;
 }
