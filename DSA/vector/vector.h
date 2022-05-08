@@ -52,7 +52,7 @@ public:
     void sort(){sort(0,_size);}
     void unsort(int lo, int hi);
     void unsort(){unsort(0,_size);} //整体置乱
-    int depduplicate(); // 无序去重
+    int debduplicate(); // 无序去重
     int uniquify();     // 有序去重
     
 //遍历  
