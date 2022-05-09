@@ -202,7 +202,55 @@ static int binSearch(T *A, T const &e, int lo, int hi)
     }
     return -1;
 }
-
+template <typename T>
+void Vector<T>::bubbleSort(int lo, int hi)
+{
+    while (!bubble(lo, hi--))
+        ;
+}
+template <typename T>
+bool Vector<T>::bubble(int lo, int hi)
+{
+    bool sorted = true;
+    while (++lo < hi)
+    {
+        if (_elem[lo - 1] > _elem[lo])
+            sorted = false;
+        swap(_elem[lo - 1], _elem[lo]);
+    }
+    return sorted;
+}
+template <typename T>
+void Vector<T>::mergeSort(int lo, int hi)
+{
+    if (hi - lo < 2)
+        return;
+    //单元素区间自然有序 否则
+    int mi = (lo + hi) >> 1;
+    //对前半段排序 后续归并
+    mergeSort(lo, mi);
+    mergeSort(mi, hi);
+    merge(lo, mi, hi);
+}
+template <typename T>
+void Vector<T>::merge(int lo, int mi, int hi)
+{
+    T *A = _elem + lo; //合并之后的向量A[0,hi-lo] = _elem[lo,hi]
+    int lb = mi - lo;
+    T *B = new T[lb]; //前一半为B[0,lb] = _elem[lo,mi]
+    for (int i = 0; i < lb; B[i] = A[i++])
+        ;
+    int lc = hi - mi;
+    T *C = _elem + mi; // c[0,lc] =_elem[mi,hi]
+    for (int i = 0, j = 0, k = 0; (j < lb) || (k < lc); j++)
+    {
+        if ((j < lb) && (!(k < lc) || (B[j] <= C[k])))
+            A[i++] = B[j++];
+        if ((k < lc) && (!(j < lb) || (C[k] < B[j])))
+            A[i++] = C[k++];
+    }
+    delete [] B;
+}
 int main()
 {
     cout << "hello" << endl;
