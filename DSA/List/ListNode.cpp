@@ -84,45 +84,130 @@ void List<T>::init()
 }
 
 template <typename T>
-T& List<T>::operator[](int r)const
+T &List<T>::operator[](int r) const
 {
     ListNodePosi(T) p = first();
-    while(0 < r--)
-    p = p->succ;
+    while (0 < r--)
+        p = p->succ;
     return p->data;
 }
 
-
-template<typename T>
-ListNodePosi(T) List<T>::find(T const& e, int n, ListNodePosi(T) p)const
+template <typename T>
+ListNodePosi(T) List<T>::find(T const &e, int n, ListNodePosi(T) p) const
 {
-    while(0 < n--)
-        if(e == (p = p->pred)->data)
-        return p;
+    while (0 < n--)
+        if (e == (p = p->pred)->data)
+            return p;
     return nullptr;
 }
 
-template<typename T>
-ListNodePosi(T) List<T>::insertAsFirst(T const& e)
+template <typename T>
+ListNodePosi(T) List<T>::insertAsFirst(T const &e)
 {
     _size++;
     return header->insertAsSucc(e);
 }
-template<typename T>
-ListNodePosi(T) List<T>::insertAsLast(T const& e)
+template <typename T>
+ListNodePosi(T) List<T>::insertAsLast(T const &e)
 {
     _size++;
-    return header->insertAspred(e);
+    return trailer->insertAspred(e);
 }
-template<typename T>
-ListNodePosi(T) List<T>::insertBefore(ListNodePosi(T) p, T const& e)
+template <typename T>
+ListNodePosi(T) List<T>::insertBefore(ListNodePosi(T) p, T const &e)
 {
     _size++;
     return p->insertAsPred(e);
 }
+
 template <typename T>
-ListNodePosi(T) List<T>::insertAfter(ListNodePosi(T) p, T const& e)
+ListNodePosi(T) List<T>::insertAfter(ListNodePosi(T) p, T const &e)
 {
     _size++;
     return p->insertAsSucc(e);
+}
+template <typename T>
+ListNodePosi(T) ListNode<T>::insertAsPred(T const &e)
+{
+    ListNodePosi(T) x = new ListNode(e,pred,this);
+    pred->succ = x;
+    pred = x;
+    return x;
+
+}
+
+
+template <typename T>
+ListNodePosi(T) ListNode<T>::insertAsSucc(T const &e)
+{
+    ListNodePosi(T) x = new ListNode(e,this,succ);
+    succ->pred = x;
+    succ = x;
+    return x;
+}
+
+template <typename T>
+void List<T>::copyNodes (ListNodePosi(T) p, int n)
+{
+    init();
+    while(n--)
+    {
+        insertAsLast(p->data);
+        p = p->succ;
+    }
+}
+
+template <typename T>
+List<T>::List(ListNodePosi(T) p , int n)
+{
+    copyNodes(p,n);
+}
+template <typename T>
+List<T>::List(List<T> const& L)
+{
+    copyNodes(L.first(),L._size);
+}
+template <typename T>
+List<T>::List(List<T> const &L, int r, int n)
+{
+    copyNodes(L[r],n);
+}
+
+
+template <typename T> 
+T List<T>::remove(ListNodePosi(T) p)
+{
+    T e = p->data;
+    p->pred->succ = p ->succ;
+    p->succ->pred = p ->pred;
+    delete p;
+    _size--;
+    return  e;
+}
+
+template <typename T>
+List<T>::~List()
+{
+    clear();
+    delete header;
+    delete trailer;
+
+}
+template <typename T>
+int List<T>::clear()
+{
+    int oldSize = _size;
+    while(0 < _size)
+    {
+        remove(header->succ);
+    }
+    return oldSize;
+
+}
+
+
+int main()
+{
+    cout<<"hello world!"<<endl;
+    return 0;
 }
