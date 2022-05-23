@@ -1,0 +1,23 @@
+{
+    "files.associations": {
+        "typeinfo": "cpp",
+        "__hash_table": "cpp",
+        "deque": "cpp",
+        "ios": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "__locale": "cpp",
+        "cstring": "cpp",
+        "ostream": "cpp",
+        "iostream": "cpp",
+        "vector": "cpp",
+        "__tuple": "cpp",
+        "algorithm": "cpp",
+        "atomic": "cpp",
+        "fstream": "cpp",
+        "locale": "cpp",
+        "memory": "cpp",
+        "set": "cpp",
+        "iosfwd": "cpp"
+    }
+}
