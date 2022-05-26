@@ -46,7 +46,7 @@ int main(){
     server.sin_port = htons(port);
     server.sin_addr.s_addr = inet_addr(ip.c_str());
     socklen_t len = sizeof(server);
-
+    
     if(bind(server_sock, (struct sockaddr*) &server, len)<0){
         std::cout << "bind socket failed:" << strerror(errno) << std::endl;
         return 0;

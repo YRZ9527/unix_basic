@@ -17,6 +17,7 @@ int main()
 
     //将套接字和IP、端口绑定
     struct sockaddr_in serv_addr;
+    bzero(&serv_addr, sizeof(serv_addr));
     memset(&serv_addr, 0, sizeof(serv_addr));               //每个字节都用0填充
     serv_addr.sin_family = AF_INET;                         //使用IPv4地址
     serv_addr.sin_addr.s_addr = inet_addr("127.0.0.1"); //具体的IP地址
