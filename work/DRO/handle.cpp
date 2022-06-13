@@ -85,7 +85,7 @@ int main()
     char *outPath = "out.txt";
     vector<int> monthRes(12, 0);
     vector<int> nonRepeatResult;
-    vector<vector<int>> temp(3000, vector<int>(3));
+    vector<vector<int>> temp(9000, vector<int>(3));
     Init test(path);
     int size = test.getSize();
     cout<<size<<endl;

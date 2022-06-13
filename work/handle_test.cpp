@@ -26,7 +26,7 @@ File::File(vector<vector<int>> &temp, string path, int size)
     infile.open(path);
     for (int i = 0; i < size; i++) //定义行循环
     {
-        for (int j = 0; j < 11; j++) //定义列循环
+        for (int j = 0; j < 16; j++) //定义列循环
         {
             infile >> temp[i][j]; //读取一个值（空格、制表符、换行隔开）就写入到矩阵中，行列不断循环进行
         }
@@ -36,11 +36,13 @@ File::File(vector<vector<int>> &temp, string path, int size)
 
 void File::hoursResult(vector<vector<int>> temp, vector<int> &monthRes, int size)
 {
+    
     for (int month = 0; month <= 11; month++)
     {
         for (int i = 0; i <= size; i++)
         {
-            if (temp[i][5] < -5 && (-temp[i][10] * 0.5 / 3.1415926 * 180 - temp[i][6]) > 0 && (temp[i][9] / 3.1415926 * 180) < 0.37)
+            //if (temp[i][5] < -5 )
+            //if (temp[i][5] < -5 &&  temp[i][7] > 0 && temp[i][10] < 0.37 && temp[i][13] >0 )
             {
                 if (temp[i][1] == month + 1)
                 {
@@ -59,7 +61,7 @@ void File::nonRepeatResult(vector<vector<int>> data, vector<int> &nonRepeatResul
 
     for (int i = 0; i <= size; i++)
     {
-        if (data[i][5] < -5 && (-data[i][10] * 0.5 / 3.1415926 * 180 - data[i][6]) > 0 && (data[i][9] / 3.1415926 * 180) < 0.37)
+        //if (data[i][5] < -5 &&  data[i][7] > 0 && data[i][10] < 0.37 && data[i][13] >0)
         {
             if (data[i][1] == 1)
                 res1.insert(data[i][2]);
@@ -136,19 +138,20 @@ void getRes(vector<string> readpath, int i, string outPath)
 
     vector<int> monthRes(12, 0);
     vector<int> nonRepeatResult;
-    vector<vector<int>> temp(10000, vector<int>(11));
+    vector<vector<int>> temp(10000, vector<int>(16));
     Init test(readpath[i]);
     int size = test.getSize();
     cout << "size = " << size << endl;
     File file(temp, readpath[i], size);
     file.hoursResult(temp, monthRes, size);
     file.nonRepeatResult(temp, nonRepeatResult, size);
+    display(monthRes, nonRepeatResult);
     writeFile(outPath, monthRes, nonRepeatResult);
 }
 int main()
 {
-    string outPath = "one_res.txt";
-    vector<string> pathname = {"one.txt"};
+    string outPath = "one527.txt";
+    vector<string> pathname = {"527.txt"};
 
     for (int i = 0; i < pathname.size(); i++)
     {

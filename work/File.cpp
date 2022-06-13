@@ -15,7 +15,7 @@ int main()
     {
         
 
-        outfile<<<< (*i).size()<< endl;
+        outfile<< (*i).size()<< endl;
     }
 
     
