@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Mon Jun 13 16:02:28 2022
+# Make data base, printed on Tue Jun 14 00:07:07 2022
 
 # Variables
 
@@ -40,7 +40,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/s4/fj70ht_n76s68tcvz24q218h0000gn/T/vscode-ipc-e895dc6d-fa2c-45d0-8ed3-fecc43cf127a.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/s4/fj70ht_n76s68tcvz24q218h0000gn/T/vscode-ipc-3d821d81-13c8-44ba-9738-99436321063c.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -52,9 +52,6 @@ GOPATH = /Users/ling/goWorkEnv
 # environment
 VSCODE_LOG_STACK = false
 # environment
- 
-make: *** No rule to make target `all'.  Stop.
-
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
@@ -169,7 +166,7 @@ CLICOLOR = Yes
 # environment
 LANG = C
 # environment
-VSCODE_PID = 3675
+VSCODE_PID = 28314
 # variable set hash-table stats:
 # Load=78/1024=8%, Rehash=0, Collisions=1/99=1%
 
@@ -179,9 +176,9 @@ VSCODE_PID = 3675
 
 # Directories
 
-# . (device 16777232, inode 50543930): 23 files, no impossibilities.
+# . (device 16777232, inode 50543930): 22 files, no impossibilities.
 
-# 23 files, no impossibilities in 1 directories.
+# 22 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -253,6 +250,8 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Mon Jun 13 16:02:28 2022
+# Finished Make data base on Tue Jun 14 00:07:07 2022
 
  
+make: *** No rule to make target `all'.  Stop.
+

@@ -23,7 +23,7 @@ def file_handler(filePath):
  
     for line in fr:
         line = line.replace('\n', '')  # 删除每行后面的换行符
-        line = line.split(' ')  # 将每行数据以逗号切割成单个字符
+        line = line.split(',')  # 将每行数据以逗号切割成单个字符
         ls.append(line)  # 将单个字符追加到列表ls中
  
     for row in ls:
