@@ -17,7 +17,7 @@ int main()
 
         outfile<< (*i).size()<< endl;
     }
-
+    outfile.close();
     
     return 0;
 }
